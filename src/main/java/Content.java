@@ -31,7 +31,7 @@ public class Content {
         this.serviceId = serviceId;
     }
 
-    public Long getServiceId() {
+    public Long  getServiceId() {
         return serviceId;
     }
 
@@ -40,20 +40,21 @@ public class Content {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Content content = (Content) o;
-        return id == content.id && quantity == content.quantity && serviceId == content.serviceId;
+        return Objects.equals(this.id, content.id) &&
+               Objects.equals(this.quantity, content.quantity) &&
+               Objects.equals(this.serviceId, content.serviceId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, quantity, serviceId);
+        int result = 17;
+        result = 31 * result + (id == null ? 0 : id.hashCode());
+        result = (int) (31 * result + id);
+        return result;
     }
 
     @Override
     public String toString() {
-        return "Content{" +
-                "id=" + id +
-                ", quantity=" + quantity +
-                ", serviceId=" + serviceId +
-                '}';
+        return getClass().getName() + "@" + Integer.toHexString(hashCode());
     }
 }

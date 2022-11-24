@@ -40,21 +40,21 @@ public class Service {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Service service = (Service) o;
-        return id == service.id && serviceName == service.serviceName && sum == service.sum;
+        return Objects.equals(this.id, service.id) &&
+                Objects.equals(this.serviceName, service.serviceName) &&
+                Objects.equals(this.sum, service.sum);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, serviceName, sum);
+        int result = 17;
+        result = 31 * result + (id == null ? 0 : id.hashCode());
+        result = (int) (31 * result + id);
+        return result;
     }
 
     @Override
     public String toString() {
-        return "Service{" +
-                "id=" + id +
-                ", serviceName=" + serviceName +
-                ", sum=" + sum +
-                '}';
+            return getClass().getName() + "@" + Integer.toHexString(hashCode());
     }
-
 }

@@ -46,6 +46,25 @@ public class Storage {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Storage storage = (Storage) o;
+        return Objects.equals(this.id, storage.id) &&
+                Objects.equals(this.quantity, storage.quantity) &&
+                Objects.equals(this.companyId, storage.companyId) &&
+                Objects.equals(this.serviceId, storage.serviceId);
+    }
+
+    @Override
+        public int hashCode() {
+            int result = 17;
+            result = 31 * result + (id == null ? 0 : id.hashCode());
+            result = (int) (31 * result + id);
+            return result;
+        }
+
+    @Override
     public String toString() {
         return "Storage{" +
                 "id=" + id +
@@ -55,16 +74,4 @@ public class Storage {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Storage storage = (Storage) o;
-        return id == storage.id && quantity == storage.quantity && companyId == storage.companyId && serviceId == storage.serviceId;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, quantity, companyId, serviceId);
-    }
 }

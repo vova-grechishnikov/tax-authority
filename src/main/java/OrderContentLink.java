@@ -30,19 +30,20 @@ public class OrderContentLink {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderContentLink that = (OrderContentLink) o;
-        return orderId == that.orderId && contentId == that.contentId;
+        return Objects.equals(orderId, that.orderId) &&
+                Objects.equals(contentId, that.contentId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderId, contentId);
+        int result = 17;
+        result = 31 * result + (orderId == null ? 0 : orderId.hashCode());
+        result = (int) (31 * result + orderId);
+        return result;
     }
 
     @Override
     public String toString() {
-        return "OrderContentLink{" +
-                "orderId=" + orderId +
-                ", contentId=" + contentId +
-                '}';
+        return getClass().getName() + '@' + Integer.toHexString(hashCode());
     }
 }

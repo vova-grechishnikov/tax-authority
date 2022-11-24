@@ -2,13 +2,12 @@ import java.util.Objects;
 
 public class Company {
     private Long id;
-    private Character taxNumber;
-    private Character companyName;
+    private String taxNumber;
+    private String companyName;
     private Long userId;
     private Short isGovernmentAgency;
 
-    public Company(Long id,Character taxNumber, Character companyName, Long userId, Short isGovernmentAgency){
-
+    public Company(Long id, String taxNumber, String companyName, Long userId, Short isGovernmentAgency) {
         this.id = id;
         this.taxNumber = taxNumber;
         this.companyName = companyName;
@@ -16,7 +15,7 @@ public class Company {
         this.isGovernmentAgency = isGovernmentAgency;
     }
 
-    public void setId(Long id){
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -24,46 +23,36 @@ public class Company {
         return id;
     }
 
-    public void setTaxNumber(Character taxNumber){
+    public void setTaxNumber(String taxNumber) {
         this.taxNumber = taxNumber;
     }
 
-    public Character getTaxNumber() {
+    public String getTaxNumber() {
         return taxNumber;
     }
 
-    public void setCompanyName(Character companyName){
+    public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
 
-    public Character getCompanyName(){
+    public String getCompanyName() {
         return companyName;
     }
 
-    public void setUserId(Long userId){
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public Long getUserId(){
+    public Long getUserId() {
         return userId;
     }
 
-    public void setIsGovernmentAgency(Short isGovernmentAgency){
+    public void setIsGovernmentAgency(Short isGovernmentAgency) {
         this.isGovernmentAgency = isGovernmentAgency;
     }
 
-    public Short getIsGovernmentAgency(){
+    public Short getIsGovernmentAgency() {
         return isGovernmentAgency;
-    }
-
-    public String toString() {
-        return "Company{" +
-                "id=" + id +
-                ", taxNumber=" + taxNumber +
-                ", companyName=" + companyName +
-                ", userId=" + userId +
-                ", isGovernmentAgency=" + isGovernmentAgency +
-                '}';
     }
 
     @Override
@@ -71,12 +60,22 @@ public class Company {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Company company = (Company) o;
-        return id == company.id && taxNumber == company.taxNumber && companyName == company.companyName && userId == company.userId && isGovernmentAgency == company.isGovernmentAgency;
+        return Objects.equals(this.id, company.id) &&
+               Objects.equals(this.taxNumber, company.taxNumber) &&
+               Objects.equals(this.companyName, company.companyName) &&
+               Objects.equals(this.userId, company.userId) &&
+               Objects.equals(this.isGovernmentAgency, company.isGovernmentAgency);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, taxNumber, companyName, userId, isGovernmentAgency);
+        int result = 17;
+        result = 31 * result + (id == null ? 0 : id.hashCode());
+        result = (int) (31 * result + id);
+        return result;
     }
-
+    @Override
+    public String toString() {
+        return getClass().getName() + "@" + Integer.toHexString(hashCode());
+    }
 }

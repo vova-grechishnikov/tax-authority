@@ -39,21 +39,22 @@ public class Document {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Document document1 = (Document) o;
-        return id == document1.id && orderId == document1.orderId && Objects.equals(document, document1.document);
+        Document document = (Document) o;
+           return Objects.equals(this.id, document.id) &&
+                   Objects.equals(this.orderId, document.orderId) &&
+                   Objects.equals(this.document, document.document);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, orderId, document);
+        int result = 17;
+        result = 31 * result + (id == null ? 0 : id.hashCode());
+        result = (int) (31 * result + id);
+        return result;
     }
 
     @Override
     public String toString() {
-        return "Document{" +
-                "id=" + id +
-                ", orderId=" + orderId +
-                ", document='" + document + '\'' +
-                '}';
+        return getClass().getName() + '@' + Integer.toHexString(hashCode());
     }
 }

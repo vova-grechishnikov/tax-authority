@@ -50,21 +50,22 @@ public class Detail {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Detail detail = (Detail) o;
-        return id == detail.id && companyId == detail.companyId && orderId == detail.orderId && operationType == detail.operationType;
+        return Objects.equals(this.id, detail.id) &&
+                Objects.equals(this.companyId, detail.companyId) &&
+                Objects.equals(this.orderId, detail.orderId) &&
+                Objects.equals(this.operationType, detail.operationType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, companyId, orderId, operationType);
+        int result = 17;
+        result = 31 * result + (id == null ? 0 : id.hashCode());
+        result = (int) (31 * result + id);
+        return result;
     }
 
     @Override
     public String toString() {
-        return "Detail{" +
-                "id=" + id +
-                ", companyId=" + companyId +
-                ", orderId=" + orderId +
-                ", operationType=" + operationType +
-                '}';
+        return getClass().getName() + '@' + Integer.toHexString(hashCode());
     }
 }
