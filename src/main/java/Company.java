@@ -5,9 +5,9 @@ public class Company {
     private String taxNumber;
     private String companyName;
     private Long userId;
-    private Short isGovernmentAgency;
+    private Boolean isGovernmentAgency;
 
-    public Company(Long id, String taxNumber, String companyName, Long userId, Short isGovernmentAgency) {
+    public Company(Long id, String taxNumber, String companyName, Long userId, Boolean isGovernmentAgency) {
         this.id = id;
         this.taxNumber = taxNumber;
         this.companyName = companyName;
@@ -47,24 +47,31 @@ public class Company {
         return userId;
     }
 
-    public void setIsGovernmentAgency(Short isGovernmentAgency) {
+    public void setIsGovernmentAgency(Boolean isGovernmentAgency) {
         this.isGovernmentAgency = isGovernmentAgency;
     }
 
-    public Short getIsGovernmentAgency() {
+    public Boolean getIsGovernmentAgency() {
         return isGovernmentAgency;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (this == null) {
+            return false;
+        }
+        if (getClass() != o.getClass()) {
+            return false;
+        }
         Company company = (Company) o;
-        return Objects.equals(this.id, company.id) &&
-               Objects.equals(this.taxNumber, company.taxNumber) &&
-               Objects.equals(this.companyName, company.companyName) &&
-               Objects.equals(this.userId, company.userId) &&
-               Objects.equals(this.isGovernmentAgency, company.isGovernmentAgency);
+        return id.equals(company.id) &&
+                taxNumber.equals(company.taxNumber) &&
+                companyName.equals(company.companyName) &&
+                userId.equals(company.userId) &&
+                isGovernmentAgency.equals(company.isGovernmentAgency);
     }
 
     @Override
@@ -72,6 +79,10 @@ public class Company {
         int result = 17;
         result = 31 * result + (id == null ? 0 : id.hashCode());
         result = (int) (31 * result + id);
+        result = 31 * result + (taxNumber == null ? 0 : taxNumber.hashCode());
+        result = 31 * result + (companyName == null ? 0 : companyName.hashCode());
+        result = 31 * result + (userId == null ? 0 : userId.hashCode());
+        result = 31 * result + (isGovernmentAgency == null ? 0 : isGovernmentAgency.hashCode());
         return result;
     }
     @Override
